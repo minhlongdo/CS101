@@ -1,5 +1,6 @@
 #include "insertionsort.h"
 #include "selectionsort.h"
+#include "bubblesort.h"
 
 /* Display array */
 void display_array(int *array, int size) {
@@ -25,6 +26,14 @@ int main() {
   display_array(a, size);
   selection_sort(a, size);
   display_array(a, size);
-  
+
+  printf ("\n");
+
+  int b[] = {5,2,4,6,1,3};
+  printf("Bubble sort\n");
+  display_array(b, size);
+  bubble_sort(b, size);
+  display_array(b, size);
+
   return 0;
 }
