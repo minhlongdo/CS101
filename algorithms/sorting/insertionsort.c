@@ -16,11 +16,3 @@ void insertion_sort(int *array, int size) {
     }
   }
 }
-
-/* Display array */
-void display_array(int *array, int size) {
-  int i;
-  for (i=0; i<size; i++)
-    printf("%i ", array[i]);
-  printf("\n");
-}
