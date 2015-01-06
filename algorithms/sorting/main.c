@@ -41,7 +41,7 @@ int main() {
   int c[] = {5,2,4,6,1,3};
   printf("Merge sort\n");
   display_array(c, size);
-  mergesort(c, 0, size);
+  partition(c, 0, size-1);
   display_array(c, size);
 
   return 0;

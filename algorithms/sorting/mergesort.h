@@ -3,6 +3,7 @@
 
 #include <stdio.h>
 
-void merge(int *array, int l_start, int l_end, int r_start, int r_end);
-void mergesort(int *array, int left, int right);
+void mergeSort(int arr[],int low,int mid,int high);
+void partition(int arr[],int low,int high);
+
 #endif
