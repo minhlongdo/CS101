@@ -2,9 +2,11 @@
 #define QUICKSORT_H
 
 #include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
 
-int quicksort_partition(int *array, int start, int end);
-void quicksort(int *array, int start, int end);
+void quicksort_partition(int *array, int size);
+void quicksort(int *array, int size);
 void optimized_quicksort(int *array, int size);
 
 #endif

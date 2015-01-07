@@ -1,58 +1,37 @@
 #include "quicksort.h"
 
-int quicksort_partition(int *array, int start, int end) {
-  int pivot, i, j, t;
-  /* First element is the pivot */
-  pivot = array[start];
-  i = start;
-  j = end + 1;
+void quicksort_partition(int *array, int size) {
+  /* If partition of size 0 or 1 are already sorted. */
+  if (size <= 1)
+    return;
 
-  while(1) {
-    /*
-    Go through until array is either greater than the pivot
-    or it gets to the end of the list. From left to right.
-    */
-    do {
-      ++i;
-    } while(array[i] <= pivot && i <= end);
-    /*
-    Go from right to left while the element is greater than the pivot.
-    */
-    do {
-      --j;
-    } while(array[j] > pivot);
+  /* Select a pivot from the array randomly */
+  int pivot = array[rand() % size];
 
-    /*
-    If the left 'wall' position is infront of the the right 'wall':
-    Terminate the loop.
-    */
-    if (i >= j)
-      break;
+  int lower = 0;
+  int upper = size - 1;
 
-    /*
-    Exchange values between the position of the ith and jth element.
-    */
-    t = array[i];
-    array[i] = array[j];
-    array[j] = t;
+  while (lower < upper) {
+    /* Partition array into sections above and below the pivot */
+    while(array[lower] < array[pivot])
+      ++lower;
+
+    while(array[upper] > array[pivot])
+      --upper;
+
+    /* Swap entries at the lower and upper indices */
+    int temp = array[lower];
+    array[lower] = array[upper];
+    array[upper] = temp;
   }
-  /**/
-  t = array[start];
-  array[start] = array[j];
-  array[j] = t;
-  /* Position of the pivot */
-  return j;
+  /* Recursively call partition on each partition */
+  quicksort_partition(array, lower);
+  quicksort_partition(&(array[lower + 1]), size - lower - 1);
 }
 
 /* Implementation of quicksort */
-void quicksort(int *array, int start, int end) {
-  int pivot;
-  if (start < end) {
-    pivot = quicksort_partition(array, start, end);
-    /*
-    Add 1 and subtract -1 because one know the pivot is in the correct position
-    */
-    quicksort(array, pivot + 1, end);
-    quicksort(array, start, pivot - 1);
-  }
+void quicksort(int *array, int size) {
+  /* Seed a random number generator */
+  srand((unsigned int)time(0));
+  quicksort_partition(array, size);
 }

@@ -49,7 +49,7 @@ int main() {
   int d[] = {5,2,4,6,1,3};
   printf("Quick sort\n");
   display_array(d, size);
-  quicksort(c, 0, size-1);
+  quicksort(c, size);
   display_array(c, size);
 
   return 0;
