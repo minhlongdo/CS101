@@ -2,6 +2,7 @@
 #include "selectionsort.h"
 #include "bubblesort.h"
 #include "mergesort.h"
+#include "quicksort.h"
 
 /* Display array */
 void display_array(int *array, int size) {
@@ -42,6 +43,13 @@ int main() {
   printf("Merge sort\n");
   display_array(c, size);
   partition(c, 0, size-1);
+  display_array(c, size);
+
+  printf("\n");
+  int d[] = {5,2,4,6,1,3};
+  printf("Quick sort\n");
+  display_array(d, size);
+  quicksort(c, 0, size-1);
   display_array(c, size);
 
   return 0;
