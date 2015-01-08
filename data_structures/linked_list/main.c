@@ -18,6 +18,9 @@ int main() {
   singly_pop(&singly);
   display_singly(singly);
 
+  singly_remove(&singly, 1);
+  display_singly(singly);
+
   /* Free memory */
   free_singly(&singly);
 

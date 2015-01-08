@@ -20,7 +20,8 @@ struct DoublyLinkedList {
 
 /* Operations of a Singly Linked List */
 void singly_append(struct SinglyLinkedList **ll, int key);
-void singly_remove(struct SinglyLinkedList **ll, int key);
+void singly_remove(struct SinglyLinkedList **ll, int position);
+void singly_remove_all(struct SinglyLinkedList **ll, int key);
 void singly_pop(struct SinglyLinkedList **ll);
 
 /* Operations of a Doubly Linked List */
