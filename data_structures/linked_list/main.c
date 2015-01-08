@@ -9,6 +9,11 @@ int main() {
   singly->data = 0;
   singly->next = NULL;
   display_singly(singly);
+  
+  /* Append data */
+  singly_append(&singly, 1);
+
+  display_singly(singly);
 
   /* Free memory */
   free_singly(&singly);
