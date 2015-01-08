@@ -1,29 +1,32 @@
 #ifndef LINKED_LIST_H
 #define LINKED_LIST_H
 
+#include <stdio.h>
+#include <stdlib.h>
+
 /* Singly linked list */
-typedef struct SinglyLinkedList {
+struct SinglyLinkedList {
   int data;
-  SinglyLinkedList *next;
+  struct SinglyLinkedList *next;
 
 };
 
 /* Doubly linked list */
-typedef struct DoublyLinkedList {
+struct DoublyLinkedList {
   int data;
-  DoublyLinkedList *prev;
-  DoublyLinkedList *next;
+  struct DoublyLinkedList *prev;
+  struct DoublyLinkedList *next;
 };
 
 /* Operations of a Singly Linked List */
-void singly_append(SinglyLinkedList **ll, int key);
-void singly_remove(SinglyLinkedList **ll, int key);
-void singly_pop(SinglyLinkedList **ll);
+void singly_append(struct SinglyLinkedList **ll, int key);
+void singly_remove(struct SinglyLinkedList **ll, int key);
+void singly_pop(struct SinglyLinkedList **ll);
 
 /* Operations of a Doubly Linked List */
-void doubly_append(DoublyLinkedList **ll, int key);
-void doubly_remove(DoublyLinkedList **ll, int key);
-void doubly_pop(DoublyLinkedList **ll);
-int detect_cycle(DoublyLinkedList *ll);
+void doubly_append(struct DoublyLinkedList **ll, int key);
+void doubly_remove(struct DoublyLinkedList **ll, int key);
+void doubly_pop(struct DoublyLinkedList **ll);
+int detect_cycle(struct DoublyLinkedList *ll);
 
 #endif

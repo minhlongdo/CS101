@@ -2,36 +2,44 @@
 
 /* Operations for a Singly Linked List */
 
-void singly_append(SinglyLinkedList **ll, int key) {
+void singly_append(struct SinglyLinkedList **ll, int key) {
+  if (*ll == NULL)
+    return;
+  struct SinglyLinkedList *head = *ll;
+
+  struct SinglyLinkedList *new_node = (struct SinglyLinkedList*)malloc(sizeof(struct SinglyLinkedList));
+  new_node->data = key;
+  new_node->next = NULL;
+
+  while(head->next != NULL){
+    head = head->next;
+  }
+
+  head->next = new_node;
+}
+
+void singly_remove(struct SinglyLinkedList **ll, int key) {
 
 }
 
-void singly_append(SinglyLinkedList **ll, int key) {
-
-}
-
-void singly_remove(SinglyLinkedList **ll, int key) {
-
-}
-
-void singly_pop(SinglyLinkedList **ll) {
+void singly_pop(struct SinglyLinkedList **ll) {
 
 }
 
 /* Operations for a Doubly Linked List */
 
-void doubly_append(DoublyLinkedList **ll, int key) {
+void doubly_append(struct DoublyLinkedList **ll, int key) {
 
 }
 
-void doubly_remove(DoublyLinkedList **ll, int key) {
+void doubly_remove(struct DoublyLinkedList **ll, int key) {
 
 }
 
-void doubly_pop(DoublyLinkedList **ll) {
+void doubly_pop(struct DoublyLinkedList **ll) {
 
 }
 
-int detect_cycle(DoublyLinkedList *ll) {
+int detect_cycle(struct DoublyLinkedList *ll) {
 
 }
