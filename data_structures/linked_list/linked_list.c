@@ -22,8 +22,17 @@ void singly_remove(struct SinglyLinkedList **ll, int key) {
 
 }
 
+/* Remove first element from linked list */
 void singly_pop(struct SinglyLinkedList **ll) {
+  struct SinglyLinkedList *head = *ll;
 
+  /* nothing to pop */
+  if (head == NULL)
+    return;
+  free(head);
+  /* Move head to the next one */
+  *ll = (*ll)->next;
+  return;
 }
 
 /* Operations for a Doubly Linked List */
