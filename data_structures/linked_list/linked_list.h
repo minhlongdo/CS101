@@ -23,11 +23,12 @@ void singly_append(struct SinglyLinkedList **ll, int key);
 void singly_remove(struct SinglyLinkedList **ll, int position);
 void singly_remove_all(struct SinglyLinkedList **ll, int key);
 void singly_pop(struct SinglyLinkedList **ll);
+void singly_detect_cycle(struct SinglyLinkedList *ll);
 
 /* Operations of a Doubly Linked List */
 void doubly_append(struct DoublyLinkedList **ll, int key);
 void doubly_remove(struct DoublyLinkedList **ll, int key);
 void doubly_pop(struct DoublyLinkedList **ll);
-int detect_cycle(struct DoublyLinkedList *ll);
+int doubly_detect_cycle(struct DoublyLinkedList *ll);
 
 #endif
