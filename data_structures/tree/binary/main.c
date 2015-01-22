@@ -22,13 +22,17 @@ int main() {
 	struct SinglyLinkedList *ll = NULL;
 	create_linkedlist_from_tree(root, &ll);
 	printf("Content\n");
+	int ll_len = 0;
 	if (ll != NULL) {
 		while(ll != NULL) {
 			printf("%i ", ll->data);
+			ll_len++;
 			ll = ll->next;
 		}
 		printf("\n");
 	}
+
+	printf("Length: %i\n", ll_len);
 
 	printf("Balancing tree\n");
 	printf("Cleaning up\n");
