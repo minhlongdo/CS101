@@ -3,6 +3,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <assert.h>
 
 #define FALSE -1
 #define TRUE 0
@@ -12,6 +13,8 @@ struct BinaryTree {
 	int value;
 	struct BinaryTree *left;
 	struct BinaryTree *right;
-}
+};
+
+int findNode(struct BinaryTree *root, int value);
 
 #endif
