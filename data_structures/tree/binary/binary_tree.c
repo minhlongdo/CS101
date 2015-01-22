@@ -14,3 +14,31 @@ int findNode(struct BinaryTree *root, int value) {
 		return findNode(root->right, value);
 	}
 }
+
+void insertNode(struct BinaryTree **root, int value) {
+	struct BinaryTree *head = *root;
+	/* Construct node */
+	struct BinaryTree *node = (struct BinaryTree*)malloc(sizeof(struct BinaryTree));
+	node->value = value;
+	node->left = NULL;
+	node->right = NULL;
+
+	while(head != NULL) {
+		if (head->value <= value) {
+			if (head->left == NULL) {
+				/* Insert into tree */
+				head->left = node;
+			} else {
+				/* Continue to tranverse*/
+				head = head->left;
+			}
+		} else {
+			if (head->right == NULL) {
+				head->right = node;
+			} else {
+				head = head->right;
+			}
+		}
+	}
+	return;
+}

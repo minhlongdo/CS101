@@ -16,5 +16,6 @@ struct BinaryTree {
 };
 
 int findNode(struct BinaryTree *root, int value);
+void insertNode(struct BinaryTree **root, int value);
 
 #endif

@@ -13,5 +13,9 @@ int main() {
 	node_value = findNode(root, 9);
 	assert (node_value == FALSE);
 
+	insertNode(&root, 9);
+	node_value = findNode(root, 9);
+	assert(node_value == TRUE);
+
 	return 0;
 }
