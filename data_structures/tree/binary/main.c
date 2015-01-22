@@ -17,10 +17,29 @@ int main() {
 	insertNode(&root, 9);
 	node_value = findNode(root, 9);
 	assert(node_value == 0);
-	printf("Balancing tree\n");
 
 	/* Create linked list */
+	struct SinglyLinkedList *ll = NULL;
+	create_linkedlist_from_tree(root, &ll);
+	printf("Content\n");
+	if (ll != NULL) {
+		while(ll != NULL) {
+			printf("%i ", ll->data);
+			ll = ll->next;
+		}
+		printf("\n");
+	}
+
+	printf("Balancing tree\n");
 	printf("Cleaning up\n");
+
+	/* Free list */
+	while (ll != NULL) {
+		struct SinglyLinkedList *prev = ll;
+		ll = ll->next;
+		free(prev);
+	}
+
 	deallocate(root);
 
 	/* Free memory at the end */
