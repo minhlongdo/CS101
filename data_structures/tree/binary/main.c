@@ -50,7 +50,6 @@ int main() {
 	/* Free list */
 	while (ll != NULL) {
 		struct SinglyLinkedList *prev = ll;
-		int tmp = prev->data;
 		ll = ll->next;
 		free(prev);
 	}
@@ -65,7 +64,17 @@ int main() {
 		printf("Left: %i\n", (balanced->left)->value);
 	if (balanced->right != NULL)
 		printf("Right: %i\n", (balanced->right)->value);
+		if ((balanced->right)->left != NULL)
+			printf("Right Left: %i\n", ((balanced->right)->left)->value);
+		if ((balanced->right)->right != NULL)
+			printf("Right Left: %i\n", ((balanced->right)->right)->value);
+			
 	printf("\n");
+	printf("Height balance check.\n");
+	if (isbalanced(balanced) == TRUE)
+		printf("Tree is balanced.\n");
+	else
+		printf("Tree is unbalanced.\n");
 
 	free(values);
 	deallocate(root);

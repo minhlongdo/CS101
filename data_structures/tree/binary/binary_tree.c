@@ -88,29 +88,29 @@ struct BinaryTree *create_balance_tree(int *list, int start, int end) {
 	int mid = (start + end)/2;
 	struct BinaryTree *root = (struct BinaryTree*)malloc(sizeof(struct BinaryTree));
 	root->value = list[mid];
-	root->left = create_balance_tree(list, 0, mid - 1);
+	root->left = create_balance_tree(list, start, mid - 1);
 	root->right = create_balance_tree(list, mid + 1, end);
 
 	return root;
 }
 
-void balance_tree(struct BinaryTree **root) {
-	struct BinaryTree *head = *root;
-	struct SinglyLinkedList *ll = NULL;
-	/* Create a linked list from binary search tree */
-	create_linkedlist_from_tree(head, &ll);
-	if (ll != NULL) {
-		while(ll != NULL) {
-			printf("%i ", ll->data);
-		}
-		printf("\n");
-	}
-	/* Free list */
-	while (ll != NULL) {
-		struct SinglyLinkedList *prev = ll;
-		ll = ll->next;
-		free(prev);
-	}
+int max(int x, int y) {
+	if (x >= y)
+		return x;
+	else
+		return y;
+}
+
+/*
+Calculate the "height" of a tree.
+Height is the number of nodes along the longest path
+from the root node down to the farthest leaf node.
+*/
+int height(struct BinaryTree *node) {
+	/* Base case tree is empty */
+	if (node == NULL)
+		return 0;
+	return 1 + max(height(node->left), height(node->right));
 }
 
 void display(struct BinaryTree *root) {
