@@ -82,6 +82,13 @@ void create_linkedlist_from_tree(struct BinaryTree *root, struct SinglyLinkedLis
 	}
 }
 
+void create_balance_tree(struct BinaryTree **root, int *list, int start, int end) {
+	if (start > end)
+		return NULL;
+	int mid = (start + end)/2;
+
+}
+
 void balance_tree(struct BinaryTree **root) {
 	struct BinaryTree *head = *root;
 	struct SinglyLinkedList *ll = NULL;

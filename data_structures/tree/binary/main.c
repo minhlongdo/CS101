@@ -57,6 +57,10 @@ int main() {
 	for (i=0; i<ll_len; i++)
 		printf("%i ", values[i]);
 	printf("\n");
+
+	struct BinaryTree *balanced = NULL;
+	create_balance_tree(&root, list, 0, ll_len-1);
+
 	free(values);
 	deallocate(root);
 
