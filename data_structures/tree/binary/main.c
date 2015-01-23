@@ -22,28 +22,42 @@ int main() {
 	struct SinglyLinkedList *ll = NULL;
 	create_linkedlist_from_tree(root, &ll);
 	printf("Content\n");
-	int ll_len = 0;
+	int ll_len = 0, i = 0;
+	struct SinglyLinkedList *head = ll;
 	if (ll != NULL) {
-		while(ll != NULL) {
-			printf("%i ", ll->data);
+		while(head != NULL) {
+			printf("%i ", head->data);
 			ll_len++;
-			ll = ll->next;
+			head = head->next;
 		}
 		printf("\n");
 	}
 
 	printf("Length: %i\n", ll_len);
+	int *values = (int*)malloc(sizeof(int)*ll_len);
 
 	printf("Balancing tree\n");
 	printf("Cleaning up\n");
 
+	while (ll != NULL) {
+		int temp = ll->data;
+		//printf("Temp: %i\n", temp);
+		values[i] = temp;
+		ll = ll->next;
+		i++;
+	}
+
 	/* Free list */
 	while (ll != NULL) {
 		struct SinglyLinkedList *prev = ll;
+		int tmp = prev->data;
 		ll = ll->next;
 		free(prev);
 	}
-
+	for (i=0; i<ll_len; i++)
+		printf("%i ", values[i]);
+	printf("\n");
+	free(values);
 	deallocate(root);
 
 	/* Free memory at the end */
