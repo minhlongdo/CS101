@@ -57,12 +57,19 @@ int main() {
 	for (i=0; i<ll_len; i++)
 		printf("%i ", values[i]);
 	printf("\n");
-
-	struct BinaryTree *balanced = NULL;
-	create_balance_tree(&root, list, 0, ll_len-1);
+	printf("\n");
+	/* Create balanced tree */
+	struct BinaryTree *balanced = create_balance_tree(values, 0, ll_len-1);
+	printf("Root: %i\n", balanced->value);
+	if (balanced->left != NULL)
+		printf("Left: %i\n", (balanced->left)->value);
+	if (balanced->right != NULL)
+		printf("Right: %i\n", (balanced->right)->value);
+	printf("\n");
 
 	free(values);
 	deallocate(root);
+	deallocate(balanced);
 
 	/* Free memory at the end */
 	return 0;

@@ -82,11 +82,16 @@ void create_linkedlist_from_tree(struct BinaryTree *root, struct SinglyLinkedLis
 	}
 }
 
-void create_balance_tree(struct BinaryTree **root, int *list, int start, int end) {
+struct BinaryTree *create_balance_tree(int *list, int start, int end) {
 	if (start > end)
 		return NULL;
 	int mid = (start + end)/2;
+	struct BinaryTree *root = (struct BinaryTree*)malloc(sizeof(struct BinaryTree));
+	root->value = list[mid];
+	root->left = create_balance_tree(list, 0, mid - 1);
+	root->right = create_balance_tree(list, mid + 1, end);
 
+	return root;
 }
 
 void balance_tree(struct BinaryTree **root) {
@@ -106,4 +111,12 @@ void balance_tree(struct BinaryTree **root) {
 		ll = ll->next;
 		free(prev);
 	}
+}
+
+void display(struct BinaryTree *root) {
+	if (root == NULL)
+		return;
+	display(root->left);
+	display(root->right);
+	printf("%i\n", root->value);
 }

@@ -18,9 +18,10 @@ struct BinaryTree {
 
 int findNode(struct BinaryTree *root, int value);
 void insertNode(struct BinaryTree **root, int value);
-void create_balance_tree(struct BinaryTree **root, int *list, int start, int end);
+struct BinaryTree *create_balance_tree(int *list, int start, int end);
 void balance_tree(struct BinaryTree **root);
 void create_linkedlist_from_tree(struct BinaryTree *root, struct SinglyLinkedList **ll);
 void deallocate(struct BinaryTree *root);
+void display(struct BinaryTree *root);
 
 #endif
