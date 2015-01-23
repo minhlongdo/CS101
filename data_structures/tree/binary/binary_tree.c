@@ -28,7 +28,7 @@ void insertNode(struct BinaryTree **root, int value) {
 			if (head->left == NULL) {
 				/* Insert into tree */
 				head->left = node;
-				break;
+				return;
 			} else {
 				/* Continue to tranverse*/
 				head = head->left;
@@ -36,7 +36,7 @@ void insertNode(struct BinaryTree **root, int value) {
 		} else {
 			if (head->right == NULL) {
 				head->right = node;
-				break;
+				return;
 			} else {
 				head = head->right;
 			}
@@ -67,18 +67,21 @@ void create_linkedlist_from_tree(struct BinaryTree *root, struct SinglyLinkedLis
 		if (*ll == NULL) {
 			(*ll) = (struct SinglyLinkedList*)malloc(sizeof(struct SinglyLinkedList));
 			(*ll)->next = NULL;
+			printf("Initial value: %i\n", root->value);
 			(*ll)->data = root->value;
 			return;
+		} else {
+			struct SinglyLinkedList *head = (*ll);
+			/*To go the end of the linked list */
+			while(head->next != NULL) {
+				head = head->next;
+			}
+			/* Create node for linked list */
+			struct SinglyLinkedList *ll_node = (struct SinglyLinkedList*)malloc(sizeof(struct SinglyLinkedList));
+			ll_node->next = NULL;
+			ll_node->data = root->value;
+			head->next = ll_node;
 		}
-		/*To go the end of the linked list */
-		while((*ll)->next != NULL) {
-			(*ll) = (*ll)->next;
-		}
-		/* Create node for linked list */
-		struct SinglyLinkedList *ll_node = (struct SinglyLinkedList*)malloc(sizeof(struct SinglyLinkedList));
-		ll_node->next = NULL;
-		ll_node->data = root->value;
-		(*ll)->next = ll_node;
 	}
 }
 
@@ -119,4 +122,40 @@ void display(struct BinaryTree *root) {
 	display(root->left);
 	display(root->right);
 	printf("%i\n", root->value);
+}
+
+/*
+Preorder tree traversal
+root - left - right
+*/
+void preorder(struct BinaryTree *root) {
+	if (root == NULL)
+		return;
+	printf("%i ", root->value);
+	preorder(root->left);
+	preorder(root->right);
+}
+
+/*
+Inorder tree traversal
+left - root - right
+*/
+void inorder(struct BinaryTree *root) {
+	if (root == NULL)
+		return;
+	inorder(root->left);
+	printf("%i ", root->value);
+	inorder(root->right);
+}
+
+/*
+Postorder
+left - right - root
+*/
+void postorder(struct BinaryTree *root) {
+	if (root == NULL)
+		return;
+	postorder(root->left);
+	postorder(root->right);
+	printf("%i ", root->value);
 }

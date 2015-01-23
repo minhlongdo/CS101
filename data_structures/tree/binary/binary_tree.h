@@ -29,5 +29,8 @@ void deallocate(struct BinaryTree *root);
 int height(struct BinaryTree *node);
 int max(int x, int y);
 void display(struct BinaryTree *root);
+void preorder(struct BinaryTree *root);
+void inorder(struct BinaryTree *root);
+void postorder(struct BinaryTree *root);
 
 #endif

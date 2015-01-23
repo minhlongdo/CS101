@@ -18,13 +18,21 @@ int main() {
 	node_value = findNode(root, 9);
 	assert(node_value == 0);
 
+	insertNode(&root, 8);
+	node_value = findNode(root, 8);
+	assert(node_value == 0);
+
+	printf("Postorder traversal\n");
+	postorder(root);
+	printf("\n");
+
 	/* Create linked list */
 	struct SinglyLinkedList *ll = NULL;
 	create_linkedlist_from_tree(root, &ll);
 	printf("Content\n");
 	int ll_len = 0, i = 0;
 	struct SinglyLinkedList *head = ll;
-	if (ll != NULL) {
+	if (head != NULL) {
 		while(head != NULL) {
 			printf("%i ", head->data);
 			ll_len++;
@@ -68,13 +76,19 @@ int main() {
 			printf("Right Left: %i\n", ((balanced->right)->left)->value);
 		if ((balanced->right)->right != NULL)
 			printf("Right Left: %i\n", ((balanced->right)->right)->value);
-			
 	printf("\n");
-	printf("Height balance check.\n");
-	if (isbalanced(balanced) == TRUE)
-		printf("Tree is balanced.\n");
-	else
-		printf("Tree is unbalanced.\n");
+
+	printf("Preorder traversal\n");
+	preorder(root);
+	printf("\n");
+
+	printf("Inorder traversal\n");
+	inorder(root);
+	printf("\n");
+
+	printf("Postorder traversal\n");
+	postorder(root);
+	printf("\n");
 
 	free(values);
 	deallocate(root);
