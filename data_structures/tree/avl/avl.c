@@ -82,3 +82,9 @@ struct AVL_Node *leftRotate(struct AVL_Node *y) {
 
   return y;
 }
+
+int getBalance(struct AVL_node *node) {
+  if (N == NULL)
+    return 0;
+  return height(N->left) - height(N->right);
+}
