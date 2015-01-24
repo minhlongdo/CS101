@@ -145,14 +145,114 @@ struct BinaryTree *findParent(struct BinaryTree *root, int value) {
 		return findParent(root->right, value);
 }
 
+/* Get node */
+struct BinaryTree *getNode(struct BinaryTree *root, int value) {
+	if (root == NULL)
+		return NULL;
+	if (root->value <= value)
+		return getNode(root->left, value);
+	else
+		return getNode(root->right, value);
+}
+
+/* Search for parent root, and node */
+void search(struct BinaryTree **root, struct BinaryTree **parent, struct BinaryTree **node, int value) {
+	struct BinaryTree *q = (*root);
+	if (q == NULL) {
+		printf("Empty tree");
+		return;
+	}
+	printf("Searching for node: %i\n", value);
+	*parent = q;
+	while (q != NULL) {
+		printf("Current node: %i\n", q->value);
+		printf("Checking for equality: %i %i\n", q->value, value);
+		int number = q->value;
+		if (number == value) {
+			*node = q;
+			return;
+		}
+		else {
+			*parent = q;
+			printf("Comparing Q'values with value: %i %i\n", q->value, value);
+			if (q->value >= value) {
+				if (q->left != NULL)
+					q = q->left;
+				else
+					break;
+			}
+			else if (q->value < value) {
+				if (q->right != NULL)
+					q = q->right;
+				else
+					break;
+			}
+		}
+	}
+	/* Couldnt find node therefore couldnt find its parent */
+	*parent = NULL;
+	*node = NULL;
+	return;
+}
+
 /* Remove node from binary tree */
 void removeNode(struct BinaryTree **root, int value) {
-	if ((*root) == NULL)
+	if ((*root) == NULL) {
+		printf("Empty tree");
 		return;
+	}
 	/* Find node */
-	if (findNode((*root), value) == FALSE)
+	struct BinaryTree *node, *parent, *xsuccessor;
+	search(&(*root), &parent, &node, value);
+	if (node == NULL) {
+		printf("Node couldnt be found.\n");
 		return;
-	/* Start node removal function */
+	}
+
+	printf("Parent node: %i\n", parent->value);
+	printf("To be deleted node: %i\n", node->value);
+
+	if ( (node->left != NULL && node->right != NULL) || parent == node ) {
+		parent = node;
+		xsuccessor = node->right;
+
+		while(xsuccessor->left != NULL) {
+			parent = xsuccessor;
+			xsuccessor = xsuccessor->left;
+		}
+		/* Exchange value */
+		node->value = xsuccessor->value;
+		/* Move the node pointer to the successor */
+		node = xsuccessor;
+	}
+
+	if (node->left == NULL && node->right == NULL) {
+		printf("Leaf node case\n");
+		if (parent->left == node)
+			parent->left = NULL;
+		else if (parent->right == node)
+			parent->right = NULL;
+		free(node);
+	}
+
+	/* Single child parent to be removed node */
+	if (node->left != NULL && node->right == NULL) {
+		printf("Left only.\n");
+		if (parent->left == node)
+			parent->left = node->left;
+		else if (parent->right == node)
+			parent->right = node->left;
+		free(node);
+	}
+
+	if (node->left == NULL && node->right != NULL) {
+		printf("Right only.\n");
+		if (parent->left == node)
+			parent->left = node->right;
+		else if (parent->right == node)
+			parent->right = node->right;
+		free(node);
+	}
 }
 
 /*

@@ -31,6 +31,8 @@ int max(int x, int y);
 void display(struct BinaryTree *root);
 void removeNode(struct BinaryTree **root, int value);
 struct BinaryTree *findParent(struct BinaryTree *root, int value);
+struct BinaryTree *getNode(struct BinaryTree *root, int value);
+void search(struct BinaryTree **root, struct BinaryTree **parent, struct BinaryTree **node, int value);
 void preorder(struct BinaryTree *root);
 void inorder(struct BinaryTree *root);
 void postorder(struct BinaryTree *root);

@@ -111,6 +111,50 @@ int main() {
 	else
 		printf("8 has no parent.\n");
 
+	printf("\n");
+
+	printf("Root of binary tree: %i\n", balanced->value);
+	printf("Root left of binary tree :%i\n", (balanced->left)->value);
+	printf("Root right of binary tree: %i\n", (balanced->right)->value);
+	printf("\n");
+
+	node_value = findNode(root, 8);
+	assert (node_value == 0);
+
+	node_value = findNode(root, 9);
+	assert (node_value == 0);
+
+	node_value = findNode(root, 10);
+	assert (node_value == 0);
+
+	printf("Delete 8.\n");
+	removeNode(&balanced, 8);
+	node_value = findNode(balanced, 8);
+	assert(node_value == -1);
+
+	/*
+	if (balanced != NULL) {
+		printf("Root of binary tree: %i\n", balanced->value);
+		if (balanced->left != NULL)
+			printf("Root left of binary tree :%i\n", (balanced->left)->value);
+		if (balanced->right != NULL)
+			printf("Root right of binary tree: %i\n", (balanced->right)->value);
+	}
+	*/
+
+	printf("Delete 9.\n");
+	removeNode(&balanced, 9);
+	node_value = findNode(balanced, 9);
+	assert(node_value == -1);
+	
+	if (balanced != NULL) {
+		printf("Root value: %i\n", balanced->value);
+		if (balanced->left != NULL)
+			printf("Root left value: %i\n", (balanced->left)->value);
+		if (balanced->right != NULL)
+			printf("Root right value: %i\n", (balanced->right)->value);
+	}
+
 	free(values);
 	deallocate(root);
 	deallocate(balanced);
