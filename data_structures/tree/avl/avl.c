@@ -88,3 +88,38 @@ int getBalance(struct AVL_node *node) {
     return 0;
   return height(N->left) - height(N->right);
 }
+
+struct AVL_Node *insert(struct AVL_Node *node, int value) {
+  if (node == NULL)
+    return newNode(value);
+
+  if (value < node->key)
+    node->left = insert(node->left, value);
+  else
+    node->right = insert(node->right, value);
+
+  node->height = max(height(node->left), height(node->right)) + 1;
+
+  int balance = getBalance(node);
+
+  /* Left left case */
+  if (balance > 1 && key < node->left->key)
+    return rightRotate(node);
+
+  /* Right right case */
+  if (balance > 1 && key < node->left->key)
+    return leftRotate(node);
+
+  /* Left right case */
+  if (balance > 1 && key > node->left->key) {
+    node->left = leftRotate(node->left);
+    return rightRotate(node);
+  }
+
+  /* Right left case */
+  if (balance < -1 && key < node->right->key) {
+    node->right = rightRotate(node->right);
+    return leftRotate(node);
+  }
+  return node;
+}

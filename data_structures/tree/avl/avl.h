@@ -17,6 +17,7 @@ int height(struct AVL_Node *node);
 struct AVL_Node *newNode(int value);
 struct AVL_Node *rightRotate(struct AVL_Node *node);
 struct AVL_Node *leftRotate(struct AVL_node *node);
+struct AVL_Node *insert(struct AVL_Node *node, int value);
 int getBalance(struct AVL_node *node);
 
 #endif
