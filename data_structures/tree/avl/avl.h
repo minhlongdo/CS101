@@ -12,4 +12,7 @@ struct AVL_Node {
   struct AVL_Node *right;
 };
 
+int max(int a, int b);
+int height(struct AVL_Node *node);
+struct AVL_Node *newNode(int value);
 #endif
