@@ -90,6 +90,27 @@ int main() {
 	postorder(root);
 	printf("\n");
 
+	printf("Find parent of 10\n");
+	struct BinaryTree *parent = findParent(balanced, 10);
+	if (parent != NULL)
+		printf("Parent of 10: %i\n", parent->value);
+	else
+		printf("10 has no parent.\n");
+
+	printf("Find parent of 9\n");
+	parent = findParent(balanced, 9);
+	if (parent != NULL)
+		printf("Parent of 9: %i\n", parent->value);
+	else
+		printf("9 has no parent.\n");
+
+	printf("Find parent of 8\n");
+	parent = findParent(balanced, 8);
+	if (parent != NULL)
+		printf("Parent of 8: %i\n", parent->value);
+	else
+		printf("8 has no parent.\n");
+
 	free(values);
 	deallocate(root);
 	deallocate(balanced);

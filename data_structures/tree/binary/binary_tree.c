@@ -124,6 +124,37 @@ void display(struct BinaryTree *root) {
 	printf("%i\n", root->value);
 }
 
+/* Find parent of a given node */
+struct BinaryTree *findParent(struct BinaryTree *root, int value) {
+	if (root == NULL)
+		return NULL;
+	/* If either children have the value return this parent node */
+	else {
+		/* Check if it is NULL before accessing, prevent segmentation fault */
+		if (root->left != NULL)
+			if ((root->left)->value == value)
+				return root;
+		if (root->right != NULL)
+			if ((root->right)->value == value)
+				return root;
+	}
+	/* Otherwise proceed as normal */
+	if (root->value <= value)
+		return findParent(root->left, value);
+	else
+		return findParent(root->right, value);
+}
+
+/* Remove node from binary tree */
+void removeNode(struct BinaryTree **root, int value) {
+	if ((*root) == NULL)
+		return;
+	/* Find node */
+	if (findNode((*root), value) == FALSE)
+		return;
+	/* Start node removal function */
+}
+
 /*
 Preorder tree traversal
 root - left - right
