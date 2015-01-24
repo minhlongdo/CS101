@@ -22,3 +22,18 @@ struct AVL_Node *newNode(int value) {
 
   return new_node;
 }
+
+struct AVL_Node *rightRotate(struct AVL_Node *y) {
+  struct AVL_Node *x = y->left;
+  struct AVL_node *T2 = x->right;
+
+  /* Perform rotation */
+  y->left = x;
+  x->right = T2;
+
+  /* Update heights */
+  x->height = max(height(x->left), height(x->right)) + 1;
+  y->height = max(height(y->left), height(y->right)) + 1;
+
+  return y;
+}

@@ -15,4 +15,5 @@ struct AVL_Node {
 int max(int a, int b);
 int height(struct AVL_Node *node);
 struct AVL_Node *newNode(int value);
+struct AVL_Node *rightRotate(struct AVL_Node *node);
 #endif
